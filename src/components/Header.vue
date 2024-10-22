@@ -41,7 +41,7 @@ div{
     text-align: center;
     justify-content: center;
     background-size: cover;
-    padding: 0px 0px 30px 0px;
+    padding: 0;
 }
 
 .title{
@@ -54,8 +54,9 @@ div{
 
 .buttons{
     display: flex;
-    gap: 48rem;
-    padding: 0 0 3rem 2rem;
+    justify-content: space-between;
+    width: 80%;
+    padding: 0 0 3%;
 }
 
 button{
@@ -63,7 +64,6 @@ button{
     height: fit-content;
     font-size: 1rem;
     padding: 0.8rem 1.5rem;
-    position: absolute;
     background-color: rgb(255, 204, 0);
     border: 2px solid transparent;
     border-radius: 30px;
@@ -82,43 +82,55 @@ button:hover{
 
 img{
     width: 18px;
-    margin: 1px 0 0 -1px;
-}
-
-.filter{
-    left: 6rem; 
-}
-
-.card{
-    right: 6rem; 
-}
-
-.total-card{
-    display: flex;
-    flex-direction: row;
-    font-size: 0.8rem;
-    background-color: rgb(255, 204, 0);
-    gap:7px;
-    align-items: center;
+    margin: 0;
 }
 
 .card-count, .total-cost{
     font-weight: 600;
 }
 
-@media (max-width:426px) {
-  
-  .filter{
-    left: 2rem; 
-    font-size: 0.8rem;
-    padding: 10px 10px;
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .buttons {
+    flex-direction: row;
+    gap: 1.5rem;
+    width: 90%;
+  }
+
+  .filter, .card {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+
+  img {
+    width: 16px;
+  }
 }
 
-.card{
-    right: 2.5rem; 
-    font-size: 0.8rem;
-    padding: 8px 15px;
-}
+@media (max-width: 426px) {
+  .title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
 
+  .buttons {
+    width: 60%;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .filter, .card {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.8rem;
+  }
+
+  img {
+    width: 14px;
+  }
 }
 </style>
