@@ -1,10 +1,14 @@
 <template>
   <div id="app">
     <div class="content">
-      <Header></Header>
-      <ProductsList :products="products"/>
+      <Header 
+        :cartCount="cartCount" 
+        :totalCost="totalCost"
+        @sortProducts="sortProductsAlphabetically"
+      />
+      <ProductsList :products="products" @add-to-cart="addToCart"/>
     </div>
-  <footer class="footer">
+    <footer class="footer">
       Created by Diana Kobets
     </footer>
   </div>
@@ -23,27 +27,39 @@ export default {
   },
   data(){
     return{
-      products:[],
-
+      products: [],
+      cartCount: 0,
+      totalCost: 0,
+      isLoading: true,
     };
   },
   methods:{
     fetchProducts(){
+      this.isLoading = true;
       axios.get('https://webapi.omoloko.ru/api/v1/products')
       .then(response =>{
-        this.products = response.data.products;
+        this.products = response.data.products.slice(0,10);
       })
       .catch(error =>{
         console.log(error);
+      })
+      .finally(() => {
+        this.isLoading = false;  
       });
+    },
+    addToCart(product){
+      this.cartCount += 1;
+      this.totalCost += product.cost;
+    },
+    sortProductsAlphabetically(){
+      this.products.sort((a,b) => a.title.localeCompare(b.title));
     }
   },
   created() {
     this.fetchProducts();
-  },
+  }
 };
 </script>
-
 
 <style scoped>
 .footer {
